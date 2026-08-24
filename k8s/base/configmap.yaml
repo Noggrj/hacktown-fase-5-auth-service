@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fiapx-auth-config
+  namespace: fiapx
+data:
+  PORT: "8080"
+  APP_ENV: "production"
+  SERVICE_NAME: "fiapx-auth-service"

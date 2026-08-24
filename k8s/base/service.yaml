@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fiapx-auth
+  namespace: fiapx
+spec:
+  type: ClusterIP
+  selector:
+    app: fiapx-auth
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
