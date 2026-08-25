@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
-	"github.com/noggrj/fiapx-auth-service/internal/auth/usecase"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/usecase"
 )
 
 func TestRegister_HappyPath(t *testing.T) {

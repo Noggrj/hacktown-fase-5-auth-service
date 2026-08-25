@@ -10,10 +10,10 @@ import (
 
 	"github.com/go-chi/chi/v5"
 
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
-	"github.com/noggrj/fiapx-auth-service/internal/auth/usecase"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/httpauth"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/jwt"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/usecase"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/httpauth"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/jwt"
 )
 
 // Handler exposes the Auth REST surface.

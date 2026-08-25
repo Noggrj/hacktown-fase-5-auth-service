@@ -8,7 +8,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
 )
 
 // fakeUserRepo is a concurrency-safe in-memory domain.UserRepository used

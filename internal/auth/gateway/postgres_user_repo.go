@@ -12,7 +12,7 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
 )
 
 const uniqueViolation = "23505"

@@ -14,10 +14,10 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 
-	authhttp "github.com/noggrj/fiapx-auth-service/internal/auth/delivery/http"
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
-	"github.com/noggrj/fiapx-auth-service/internal/auth/usecase"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/jwt"
+	authhttp "github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/delivery/http"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/usecase"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/jwt"
 )
 
 const testSecret = "test-secret-at-least-16-bytes"

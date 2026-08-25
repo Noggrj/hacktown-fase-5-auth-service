@@ -1,4 +1,4 @@
-module github.com/noggrj/fiapx-auth-service
+module github.com/noggrj/hacktown-fase-5-auth-service
 
 go 1.25.0
 

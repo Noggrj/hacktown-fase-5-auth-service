@@ -14,16 +14,16 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 
-	authhttp "github.com/noggrj/fiapx-auth-service/internal/auth/delivery/http"
-	"github.com/noggrj/fiapx-auth-service/internal/auth/gateway"
-	"github.com/noggrj/fiapx-auth-service/internal/auth/usecase"
+	authhttp "github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/delivery/http"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/gateway"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/usecase"
 
-	"github.com/noggrj/fiapx-auth-service/internal/platform/config"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/db"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/health"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/jwt"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/logging"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/metrics"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/config"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/db"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/health"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/jwt"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/logging"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/metrics"
 )
 
 var version = "dev"

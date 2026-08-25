@@ -3,7 +3,7 @@ package domain_test
 import (
 	"testing"
 
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
 )
 
 func TestNewUser_NormalizesEmail(t *testing.T) {

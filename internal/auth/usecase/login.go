@@ -8,8 +8,8 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/jwt"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/jwt"
 )
 
 const tokenTTL = 24 * time.Hour

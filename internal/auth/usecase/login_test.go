@@ -5,9 +5,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/noggrj/fiapx-auth-service/internal/auth/domain"
-	"github.com/noggrj/fiapx-auth-service/internal/auth/usecase"
-	"github.com/noggrj/fiapx-auth-service/internal/platform/jwt"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/usecase"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/jwt"
 )
 
 const testSecret = "test-secret-at-least-16-bytes"
