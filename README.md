@@ -3,7 +3,7 @@
 Serviço de autenticação (cadastro/login por usuário e senha) do sistema de
 processamento de vídeos FIAP X — Hackathon SOAT (Fase 5). Um dos 4
 microsserviços do projeto; ver a arquitetura completa em
-[`fiapx-events`](https://github.com/noggrj/fiapx-events) (contratos de
+[`fiapx-events`](https://github.com/noggrj/hacktown-fase-5-events) (contratos de
 evento) e no repositório de infraestrutura.
 
 Emite os JWTs (HS256) que os demais serviços (`fiapx-video-service`

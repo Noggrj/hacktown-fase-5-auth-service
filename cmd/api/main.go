@@ -21,6 +21,7 @@ import (
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/config"
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/db"
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/health"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/httpcors"
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/jwt"
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/logging"
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/metrics"
@@ -104,7 +105,7 @@ func main() {
 	hh := health.New(version, probes)
 
 	r := chi.NewRouter()
-	r.Use(middleware.Recoverer, metrics.Middleware)
+	r.Use(middleware.Recoverer, metrics.Middleware, httpcors.Middleware(cfg.CORSAllowedOrigins))
 	r.Get("/health", hh.Live)
 	r.Get("/ready", hh.Ready)
 	r.Handle("/metrics", metrics.Handler())
