@@ -24,6 +24,21 @@ var (
 		Help:    "HTTP request latency in seconds.",
 		Buckets: prometheus.DefBuckets,
 	}, []string{"path", "method"})
+
+	// Business metrics — exported so internal/auth/usecase can record
+	// them directly. Deliberately not derived from httpRequests: those
+	// are generic (any path/status), these mean something specific
+	// (a user actually got created / actually got a token), and they're
+	// what the Grafana dashboard in fiapx-infra graphs.
+	UsersRegistered = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "fiapx_users_registered_total",
+		Help: "Total users successfully registered.",
+	})
+
+	Logins = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "fiapx_logins_total",
+		Help: "Total login attempts, labeled by result.",
+	}, []string{"result"}) // "success" | "invalid_credentials"
 )
 
 // Handler serves the /metrics scrape endpoint.

@@ -10,6 +10,7 @@ import (
 
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/jwt"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/metrics"
 )
 
 const tokenTTL = 24 * time.Hour
@@ -32,17 +33,20 @@ func (uc *LoginUseCase) Execute(ctx context.Context, email, password string) (st
 	u, err := uc.users.GetByEmail(ctx, email)
 	if err != nil {
 		if errors.Is(err, domain.ErrNotFound) {
+			metrics.Logins.WithLabelValues("invalid_credentials").Inc()
 			return "", domain.ErrInvalidCredentials
 		}
 		return "", err
 	}
 	if err := bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(password)); err != nil {
+		metrics.Logins.WithLabelValues("invalid_credentials").Inc()
 		return "", domain.ErrInvalidCredentials
 	}
 	token, err := uc.issuer.Issue(u.ID.String(), u.Email, tokenTTL)
 	if err != nil {
 		return "", err
 	}
+	metrics.Logins.WithLabelValues("success").Inc()
 	uc.log.Info("user logged in", slog.String("userId", u.ID.String()))
 	return token, nil
 }

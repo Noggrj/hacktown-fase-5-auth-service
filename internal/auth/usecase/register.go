@@ -8,6 +8,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/noggrj/hacktown-fase-5-auth-service/internal/auth/domain"
+	"github.com/noggrj/hacktown-fase-5-auth-service/internal/platform/metrics"
 )
 
 type RegisterUseCase struct {
@@ -35,6 +36,7 @@ func (uc *RegisterUseCase) Execute(ctx context.Context, email, password string) 
 	if err := uc.users.Create(ctx, u); err != nil {
 		return nil, err
 	}
+	metrics.UsersRegistered.Inc()
 	uc.log.Info("user registered", slog.String("userId", u.ID.String()))
 	return u, nil
 }

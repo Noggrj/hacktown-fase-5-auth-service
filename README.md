@@ -41,6 +41,14 @@ justificar um módulo Go compartilhado à parte.
 | GET | `/ready` | — | Readiness (checa Postgres) |
 | GET | `/metrics` | — | Scrape Prometheus |
 
+`/metrics` expõe `http_requests_total`/`http_request_duration_seconds`
+(genéricas, todo serviço tem) mais duas métricas de negócio próprias:
+`fiapx_users_registered_total` (contador) e `fiapx_logins_total{result}`
+(contador, `result="success"` ou `"invalid_credentials"`) — gravadas em
+`internal/auth/usecase/{register,login}.go`. Aparecem no dashboard
+"FIAP X — Serviços" do [`fiapx-infra`](https://github.com/noggrj/hacktown-fase-5-infra)
+(local via `docker-compose`, ou em produção via Grafana).
+
 ## Rodando localmente
 
 ```bash
