@@ -82,3 +82,27 @@ um exemplo do shape esperado do Secret `fiapx-auth-secret`; se morasse
 dentro de `k8s/base/`, um `kubectl apply -f k8s/base/` sobrescreveria o
 secret real com os placeholders a cada deploy (erro já cometido e corrigido
 em `autorepair-billing-service` na Fase 4).
+
+### CI/CD — job `deploy`
+
+Pressupõe que a AWS já foi provisionada (`terraform apply` no
+[`fiapx-infra`](https://github.com/noggrj/hacktown-fase-5-infra) —
+cluster EKS, RDS e ECR precisam existir antes). Só roda com disparo
+manual (aba **Actions** → **CI — fiapx-auth-service** → **Run workflow**)
+— nunca em push/PR, porque sem cluster provisionado ficaria vermelho
+sempre.
+
+Faz: build + push da imagem pro ECR → cria/atualiza o Secret
+`fiapx-auth-secret` → `kubectl apply -f k8s/base/` → roda
+`migrations/*.sql` contra o RDS (`k8s/migration-job.yaml`) → atualiza a
+imagem do Deployment e espera o rollout.
+
+**Secrets do repositório** (Settings → Secrets and variables → Actions),
+todos obrigatórios:
+
+| Secret | O que é |
+|---|---|
+| `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN` | Credenciais da conta AWS Academy `voclabs` — temporárias, expiram em ~4h; renove antes de disparar o workflow |
+| `DB_HOST` | Endpoint do RDS (`terraform output db_endpoints`) |
+| `DB_PASSWORD` | Senha do usuário `auth` no RDS (mesmo valor passado como `-var="auth_db_password=..."` no `terraform apply`) |
+| `JWT_SECRET` | Precisa ser o **mesmo valor** configurado no `fiapx-video-service` — os dois validam o token com o mesmo segredo |

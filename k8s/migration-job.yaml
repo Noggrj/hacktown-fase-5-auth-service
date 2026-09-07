@@ -1,0 +1,42 @@
+# Job one-shot que aplica migrations/*.sql contra o RDS de produção.
+# Não roda sozinho: o CD (.github/workflows/ci.yml, job "deploy") cria o
+# ConfigMap fiapx-auth-migrations a partir de migrations/ (fonte real,
+# sem duplicar SQL aqui) e reaplica este Job a cada deploy — Jobs são
+# imutáveis, por isso o workflow apaga o anterior antes de recriar.
+#
+# Reusa o Secret fiapx-auth-secret (mesma DB_URL que o app usa) — sem
+# credencial extra pra gerenciar só pra isso.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fiapx-auth-migrate
+  namespace: fiapx
+spec:
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: postgres:16-alpine
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              for f in $(ls /migrations/*.sql | sort); do
+                echo "applying $f"
+                psql "$DB_URL" -v ON_ERROR_STOP=1 -f "$f"
+              done
+          envFrom:
+            - secretRef:
+                name: fiapx-auth-secret
+          volumeMounts:
+            - name: migrations
+              mountPath: /migrations
+              readOnly: true
+      volumes:
+        - name: migrations
+          configMap:
+            name: fiapx-auth-migrations
